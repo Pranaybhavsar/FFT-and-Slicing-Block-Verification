@@ -47,16 +47,16 @@ Each bin's magnitude is compared against full scale derived from bin 55 or 57:
 ## 🔄 Interface Ports  
 
 
-| Signal     | Dir | Width | Description                          |
-| ------------- | ------------ | -------------------------------- |
-| Clk        | In  | 1     | System clock (positive edge)         |
-| Reset      | In  | 1     | Asynchronous reset (active-high)     |
-| PushIn     | In  | 1     | Input data valid flag                |
-| FirstData  | In  | 1     | Marks the start of FFT frame         |
-| DinR       | In  | 16    | Real part of input (1.15 fixed-point)|
-| DinI       | In  | 16    | Imag part of input (1.15 fixed-point)|
-| PushOut    | Out | 1     | Output data valid flag               |
-| DataOut    | Out | 48    | Encoded output symbols (24×2 bits)   |
+| Name        | Dir | Width | Description                           |
+| ----------- | --- | ----- | ------------------------------------- |
+| `Clk`       | In  | 1     | Positive-edge system clock            |
+| `Reset`     | In  | 1     | Active-high asynchronous reset        |
+| `PushIn`    | In  | 1     | Indicates valid input data            |
+| `FirstData` | In  | 1     | Marks the start of an FFT frame       |
+| `DinR`      | In  | 16    | Real part of input (1.15 format)      |
+| `DinI`      | In  | 16    | Imaginary part of input (1.15 format) |
+| `PushOut`   | Out | 1     | Output valid indicator                |
+| `DataOut`   | Out | 48    | 2-bit sliced outputs per FFT bin      |
 
 ---
 --------------------
