@@ -59,7 +59,7 @@ Each bin's magnitude is compared against full scale derived from bin 55 or 57:
 | PushOut    | Out | 1     | Output data valid flag               |
 | DataOut    | Out | 48    | Encoded output symbols (24×2 bits)   |
 +------------+-----+-------+--------------------------------------+
-
+---
 --------------------
 DUT REPORT
 --------------------
