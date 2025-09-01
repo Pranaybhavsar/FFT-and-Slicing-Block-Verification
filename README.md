@@ -47,9 +47,8 @@ Each bin's magnitude is compared against full scale derived from bin 55 or 57:
 ## 🔄 Interface Ports  
 
 
-+------------+-----+-------+--------------------------------------+
 | Signal     | Dir | Width | Description                          |
-+------------+-----+-------+--------------------------------------+
+| ------------- | ------------ | -------------------------------- |
 | Clk        | In  | 1     | System clock (positive edge)         |
 | Reset      | In  | 1     | Asynchronous reset (active-high)     |
 | PushIn     | In  | 1     | Input data valid flag                |
@@ -58,7 +57,7 @@ Each bin's magnitude is compared against full scale derived from bin 55 or 57:
 | DinI       | In  | 16    | Imag part of input (1.15 fixed-point)|
 | PushOut    | Out | 1     | Output data valid flag               |
 | DataOut    | Out | 48    | Encoded output symbols (24×2 bits)   |
-+------------+-----+-------+--------------------------------------+
+
 ---
 --------------------
 DUT REPORT
