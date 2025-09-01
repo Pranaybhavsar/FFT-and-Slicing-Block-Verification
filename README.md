@@ -32,14 +32,15 @@ This project implements a **128-point complex FFT with a slicing stage** for a s
 
 ## 📤 Symbol Encoding  
 
-Magnitude levels are compared against the reference tones:  
 
-| Symbol | Energy Level | Magnitude Range (% of Reference) |
-|--------|--------------|----------------------------------|
-| `00`   | Low          | < 25%                           |
-| `01`   | Medium-Low   | 25% – 49%                       |
-| `10`   | Medium-High  | 50% – 74%                       |
-| `11`   | High         | ≥ 75%                           |
+Each bin's magnitude is compared against full scale derived from bin 55 or 57:
+
+| Encoded Value | Energy Level | Magnitude Range (% of Full Scale) |
+| ------------- | ------------ | --------------------------------- |
+| 00            | 0%           | < 25%                             |
+| 01            | 33%          | ≥25% and <50%                     |
+| 10            | 66%          | ≥50% and <75%                     |
+| 11            | 100%         | ≥75%                              |
 
 ---
 
