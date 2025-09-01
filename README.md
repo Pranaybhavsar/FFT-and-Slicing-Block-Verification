@@ -46,7 +46,7 @@ Each bin's magnitude is compared against full scale derived from bin 55 or 57:
 
 ## 🔄 Interface Ports  
 
-```text
+
 +------------+-----+-------+--------------------------------------+
 | Signal     | Dir | Width | Description                          |
 +------------+-----+-------+--------------------------------------+
