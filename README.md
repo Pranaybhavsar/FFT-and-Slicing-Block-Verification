@@ -1,3 +1,64 @@
+
+# ⚡ 128-Point FFT & Slicing Module for OFDM Receiver  
+
+This project implements a **128-point complex FFT with a slicing stage** for a simplified OFDM (Orthogonal Frequency Division Multiplexing) receiver on FPGA. The design transforms time-domain I/Q input samples into frequency bins, applies energy-based slicing, and outputs quantized digital symbols.  
+
+---
+
+## 📘 System Overview  
+
+- Accepts **128 complex samples** in **1.15 fixed-point format**  
+- Performs a **128-point FFT**  
+- Extracts energy from **24 active bins** (even-numbered bins 4–52)  
+- Uses **reference tones** (bins 55 and 57) to approximate full-scale energy  
+- Outputs **2-bit quantized symbols** per bin (total 48 bits per frame)  
+
+---
+
+## 🔧 Specifications  
+
+| Feature            | Value/Description                              |
+|---------------------|------------------------------------------------|
+| **FFT length**      | 128-point, complex                             |
+| **Input format**    | 16-bit signed fixed-point (1.15)               |
+| **Active bins**     | Even-numbered bins 4–52 (24 total)             |
+| **Reference bins**  | 55 and 57 (used for energy scaling)            |
+| **Encoding**        | 2 bits per tone (00, 01, 10, 11)               |
+| **Output width**    | 48 bits (24 tones × 2 bits)                    |
+| **Clocking**        | Positive-edge triggered                        |
+| **Reset**           | Asynchronous, active-high                      |
+
+---
+
+## 📤 Symbol Encoding  
+
+Magnitude levels are compared against the reference tones:  
+
+| Symbol | Energy Level | Magnitude Range (% of Reference) |
+|--------|--------------|----------------------------------|
+| `00`   | Low          | < 25%                           |
+| `01`   | Medium-Low   | 25% – 49%                       |
+| `10`   | Medium-High  | 50% – 74%                       |
+| `11`   | High         | ≥ 75%                           |
+
+---
+
+## 🔄 Interface Ports  
+
+```text
++------------+-----+-------+--------------------------------------+
+| Signal     | Dir | Width | Description                          |
++------------+-----+-------+--------------------------------------+
+| Clk        | In  | 1     | System clock (positive edge)         |
+| Reset      | In  | 1     | Asynchronous reset (active-high)     |
+| PushIn     | In  | 1     | Input data valid flag                |
+| FirstData  | In  | 1     | Marks the start of FFT frame         |
+| DinR       | In  | 16    | Real part of input (1.15 fixed-point)|
+| DinI       | In  | 16    | Imag part of input (1.15 fixed-point)|
+| PushOut    | Out | 1     | Output data valid flag               |
+| DataOut    | Out | 48    | Encoded output symbols (24×2 bits)   |
++------------+-----+-------+--------------------------------------+
+
 --------------------
 DUT REPORT
 --------------------
